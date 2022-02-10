@@ -1,0 +1,876 @@
+<!doctype html>
+
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="//jqueryui.com/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="lib/style.css">
+    <script src="lib/script.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid mainbox">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Project Goals Framework Tool</h1>
+          <p>You can use this tool to measure several <strong>Learning goals</strong> on your course.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <label>Course name:  </label><input class="textbox" type="text" value="Write your course's name" size="20"/>
+        </div>
+        <div class="col-sm-6">
+          <a href="#" class="btn btn-primary" onclick="showHelp();">Show help</a>
+          <a href="#" class="btn btn-primary" onclick="showLastHiddenColumn();">Add Column</a>
+          <a href="#" class="btn btn-primary" onclick="printPage();">Download image</a>
+          
+          <br/><br/>
+        </div>
+      </div>
+      <div class="row">
+        <div id="usage-box" class="col-sm-12" style="display:none;">
+            <h3>Usage:</h3>
+            
+            <p>Rows represent the basic set of learning goals. You can add two custom learning goals too. Columns represent views from your course (Teacher/student, Phase 1/Phase 2, Reality/Expectation, Activity 1/ Activity 2). You can hide unnecesary columns (Clicking the X button) or you can add new ones (using the add button below). </p>
+            <P>Use the slidebars to measure learning goals from each view. When you're done, you can download a generated image using the button at the end of the page.</P>
+          </div>
+      </div>
+      <div class="row">
+        
+        <div class="col-sm-12" style="display:inline;">
+          
+        </div>
+
+      </div>
+
+
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="goal vertical-center">
+            
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="description vertical-center">
+            <h3>Goal</h3>
+          </div>
+        </div>
+        <div class="col-sm-1 col_dimension" j="0">
+          <div class="textbox vertical-center" id="textbox_0" j="0">
+            <input class="textbox" type="text" value="View 1" size="12"/>
+            <img src="img/button-remove.png" width="20" onclick="hideColumn(0);"/>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="1">
+          <div class="textbox vertical-center"  id="textbox_1"  j="1">
+            <input class="textbox" type="text" value="View 2" size="12"/>
+            <img src="img/button-remove.png" width="20" onclick="hideColumn(1);"/>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="2">
+          <div class="textbox vertical-center"  id="textbox_2"  j="2">
+            <input class="textbox" type="text" value="View 3" size="12"/>
+            <img src="img/button-remove.png" width="20" onclick="hideColumn(2);"/>
+          </div>
+        </div>
+        <!--hidden cols-->
+        <div class="col-sm-1 col_dimension" j="3" style="display:none;">
+          <div class="textbox vertical-center"  id="textbox_3"  j="3">
+            <input class="textbox" type="text" value="View 4" size="12"/>
+            <img src="img/button-remove.png" width="20" onclick="hideColumn(3);"/>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="4" style="display:none;">
+          <div class="textbox vertical-center"  id="textbox_4"  j="4">
+            <input class="textbox" type="text" value="View 5" size="12"/>
+            <img src="img/button-remove.png" width="20" onclick="hideColumn(4);"/>
+          </div>
+        </div>
+
+        
+        
+        
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="goal vertical-center">
+            <img src="img/ico-HANDS-ON.png" width="150"></img>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="description vertical-center">
+            <h5>Hands-ON skills</h5>
+            <p>Active manipulation of physical objects, use of tools, operation of equipment</p>
+          </div>
+        </div>
+        <div class="col-sm-1 col_dimension" j="0">
+          <div class="bar vertical-center">
+            <div id="slider_0-0" class="slider" i='0' j="0">
+              <div id="custom-handle_0-0" i='0' j="0"  class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="1">
+          <div class="bar vertical-center">
+            <div id="slider_0-1" class="slider" i='0' j="1">
+              <div id="custom-handle_0-1" i='0' j="1"  class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="2">
+          <div class="bar vertical-center">
+            <div id="slider_0-2" class="slider" i='0' j="2">
+              <div id="custom-handle_0-2" i='0' j="2"  class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--hidden cols-->
+        <div class="col-sm-1 col_dimension" j="3" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_0-3" class="slider" i='0' j="3">
+              <div id="custom-handle_0-3" i='0' j="3"  class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+         <div class="col-sm-1 col_dimension" j="4" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_0-4" class="slider" i='0' j="4">
+              <div id="custom-handle_0-4" i='0' j="4"  class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="goal vertical-center">
+            <img src="img/ico-DESIGN-CREATIVITY.png" width="150"></img>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="description vertical-center">
+            <h5>Design & creativity</h5>
+            <p>Purposeful generation and development of original concepts, processes, or prototypes; use of divergent thinking tools and techniques</p>
+          </div>
+        </div>
+        <div class="col-sm-1 col_dimension" j="0">
+          <div class="bar vertical-center">
+            <div id="slider_1-0" i='1' j="0" class="slider">
+              <div id="custom-handle_1-0" i='1' j="0" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="1">
+          <div class="bar vertical-center">
+            <div id="slider_1-1" i='1' j="1" class="slider">
+              <div id="custom-handle_1-1" i='1' j="1" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="2">
+          <div class="bar vertical-center">
+            <div id="slider_1-2" i='1' j="2" class="slider">
+              <div id="custom-handle_1-2" i='1' j="2" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--hidden cols-->
+        <div class="col-sm-1 col_dimension" j="3" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_1-3" i='1' j="3" class="slider">
+              <div id="custom-handle_1-3" i='1' j="3" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-sm-1 col_dimension" j="4" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_1-4" i='1' j="4" class="slider">
+              <div id="custom-handle_1-4" i='1' j="4" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="goal vertical-center">
+            <img src="img/ico-CONTENT.png" width="150"></img>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="description vertical-center">
+            <h5>Content learning</h5>
+            <p>Acquisition, comprehension, and application
+of knowledge (lower-level cognitions)</p>
+          </div>
+        </div>
+        <div class="col-sm-1 col_dimension" j="0">
+          <div class="bar vertical-center">
+            <div id="slider_2-0" i='2' j="0" class="slider">
+              <div id="custom-handle_2-0" i='2' j="0" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="1">
+          <div class="bar vertical-center">
+            <div id="slider_2-1" i='2' j="1" class="slider">
+              <div id="custom-handle_2-1" i='2' j="1" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="2">
+          <div class="bar vertical-center">
+            <div id="slider_2-2" i='2' j="2" class="slider">
+              <div id="custom-handle_2-2" i='2' j="2" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--hidden cols-->
+        <div class="col-sm-1 col_dimension" j="3" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_2-3" i='2' j="3" class="slider">
+              <div id="custom-handle_2-3" i='2' j="3" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-sm-1 col_dimension" j="4" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_2-4" i='2' j="4" class="slider">
+              <div id="custom-handle_2-4" i='2' j="4" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="goal vertical-center">
+            <img src="img/ico-CRITICAL.png" width="150"></img>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="description vertical-center">
+            <h5>Critical thinking</h5>
+            <p>Interpretation, analysis, synthesis, and
+evaluation of ideas (higher-level cognitions</p>
+          </div>
+        </div>
+        <div class="col-sm-1 col_dimension" j="0">
+          <div class="bar vertical-center">
+            <div id="slider_3-0" i='3' j="0" class="slider">
+              <div id="custom-handle_3-0" i='3' j="0" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="1">
+          <div class="bar vertical-center">
+            <div id="slider_3-1" i='3' j="1" class="slider">
+              <div id="custom-handle_3-1" i='3' j="1" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="2">
+          <div class="bar vertical-center">
+            <div id="slider_3-2" i='3' j="2" class="slider">
+              <div id="custom-handle_3-2" i='3' j="2" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--hidden cols-->
+        <div class="col-sm-1 col_dimension" j="3" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_3-3" i='3' j="3" class="slider">
+              <div id="custom-handle_3-3" i='3' j="3" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-sm-1 col_dimension" j="4" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_3-4" i='3' j="4" class="slider">
+              <div id="custom-handle_3-4" i='3' j="4" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="goal vertical-center">
+            <img src="img/ico-REAL-WORLD.png" width="150"></img>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="description vertical-center">
+            <h5>Real-world context</h5>
+            <p>Addressing authentic problems from
+outside the classroom, often with
+consideration of complex economic,
+cultural, social, and ethical issues</p>
+          </div>
+        </div>
+        <div class="col-sm-1 col_dimension" j="0">
+          <div class="bar vertical-center">
+            <div id="slider_4-0" i='4' j="0" class="slider">
+              <div id="custom-handle_4-0" i='4' j="0" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="1">
+          <div class="bar vertical-center">
+            <div id="slider_4-1" i='4' j="1" class="slider">
+              <div id="custom-handle_4-1" i='4' j="1" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="2">
+          <div class="bar vertical-center">
+            <div id="slider_4-2" i='4' j="2" class="slider">
+              <div id="custom-handle_4-2" i='4' j="2" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--hidden cols-->
+        <div class="col-sm-1 col_dimension" j="3" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_4-3" i='4' j="3" class="slider">
+              <div id="custom-handle_4-3" i='4' j="3" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-sm-1 col_dimension" j="4" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_4-4" i='4' j="4" class="slider">
+              <div id="custom-handle_4-4" i='4' j="4" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="goal vertical-center">
+            <img src="img/ico-INTEGRATION.png" width="150"></img>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="description vertical-center">
+            <h5>Disciplinary integration</h5>
+            <p>Applying the skills, perspectives, and
+knowledge from more than one traditional
+academic discipline to a complex challenge</p>
+          </div>
+        </div>
+        <div class="col-sm-1 col_dimension" j="0">
+          <div class="bar vertical-center">
+            <div id="slider_5-0" i='5' j="0" class="slider">
+              <div id="custom-handle_5-0" i='5' j="0" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="1">
+          <div class="bar vertical-center">
+            <div id="slider_5-1" i='5' j="1" class="slider">
+              <div id="custom-handle_5-1" i='5' j="1" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="2">
+          <div class="bar vertical-center">
+            <div id="slider_5-2" i='5' j="2" class="slider">
+              <div id="custom-handle_5-2" i='5' j="2" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--hidden cols-->
+        <div class="col-sm-1 col_dimension" j="3" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_5-3" i='5' j="3" class="slider">
+              <div id="custom-handle_5-3" i='5' j="3" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-sm-1 col_dimension" j="4" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_5-4" i='5' j="4" class="slider">
+              <div id="custom-handle_5-4" i='5' j="4" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="goal vertical-center">
+            <img src="img/ico-COMMUNICATION.png" width="150"></img>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="description vertical-center">
+            <h5>Communication skills</h5>
+              <p>Effective presentation or exchange of
+information and ideas using written, oral,
+visual, or graphical means</p>
+          </div>
+        </div>
+        <div class="col-sm-1 col_dimension" j="0">
+          <div class="bar vertical-center">
+            <div id="slider_6-0" i='6' j="0" class="slider">
+              <div id="custom-handle_6-0" i='6' j="0" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="1">
+          <div class="bar vertical-center">
+            <div id="slider_6-1" i='6' j="1" class="slider">
+              <div id="custom-handle_6-1" i='6' j="1" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="2">
+          <div class="bar vertical-center">
+            <div id="slider_6-2" i='6' j="2" class="slider">
+              <div id="custom-handle_6-2" i='6' j="2" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--hidden cols-->
+        <div class="col-sm-1 col_dimension" j="3" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_6-3" i='6' j="3" class="slider">
+              <div id="custom-handle_6-3" i='6' j="3" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-sm-1 col_dimension" j="4" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_6-4" i='6' j="4" class="slider">
+              <div id="custom-handle_6-4" i='6' j="4" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="goal vertical-center">
+            <img src="img/ico-TEAMING.png" width="150"></img>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="description vertical-center">
+            <h5>Teaming, collaboration</h5>
+              <p>Engagement and cooperation with others in
+defined roles towards one or more common
+goals</p>
+          </div>
+        </div>
+        <div class="col-sm-1 col_dimension" j="0">
+          <div class="bar vertical-center">
+            <div id="slider_7-0" i='7' j="0" class="slider">
+              <div id="custom-handle_7-0" i='7' j="0" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="1">
+          <div class="bar vertical-center">
+            <div id="slider_7-1" i='7' j="1" class="slider">
+              <div id="custom-handle_7-1" i='7' j="1" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="2">
+          <div class="bar vertical-center">
+            <div id="slider_7-2" i='7' j="2" class="slider">
+              <div id="custom-handle_7-2" i='7' j="2" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--hidden cols-->
+        <div class="col-sm-1 col_dimension" j="3" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_7-3" i='7' j="3" class="slider">
+              <div id="custom-handle_7-3" i='7' j="3" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-sm-1 col_dimension" j="4" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_7-4" i='7' j="4" class="slider">
+              <div id="custom-handle_7-4" i='7' j="4" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="goal vertical-center">
+            <img src="img/ico-MOTIVATION.png" width="150"></img>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="description vertical-center">
+            <h5>Instrinsic motivation</h5>
+              <p>Engagement in learning for reasons of
+personal interest, enjoyment, value, or
+passion</p>
+          </div>
+        </div>
+        <div class="col-sm-1 col_dimension" j="0">
+          <div class="bar vertical-center">
+            <div id="slider_8-0" i='8' j="0" class="slider">
+              <div id="custom-handle_8-0" i='8' j="0" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="1">
+          <div class="bar vertical-center">
+            <div id="slider_8-1" i='8' j="1" class="slider">
+              <div id="custom-handle_8-1" i='8' j="1" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="2">
+          <div class="bar vertical-center">
+            <div id="slider_8-2" i='8' j="2" class="slider">
+              <div id="custom-handle_8-2" i='8' j="2" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--hidden cols-->
+        <div class="col-sm-1 col_dimension" j="3" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_8-3" i='8' j="3" class="slider">
+              <div id="custom-handle_8-3" i='8' j="3" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-sm-1 col_dimension" j="4" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_8-4" i='8' j="4" class="slider">
+              <div id="custom-handle_8-4" i='8' j="4" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="goal vertical-center">
+            <img src="img/ico-SELF-DIRECTED.png" width="150"></img>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="description vertical-center">
+            <h5>Self-directed learning</h5>
+              <p>Autonomously addressing learning needs by
+taking control of goal setting, resource
+identification, process selection and
+implementation, and reflection and assessment</p>
+          </div>
+        </div>
+        <div class="col-sm-1 col_dimension" j="0">
+          <div class="bar vertical-center">
+            <div id="slider_9-0" i='9' j="0" class="slider">
+              <div id="custom-handle_9-0" i='9' j="0" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="1">
+          <div class="bar vertical-center">
+            <div id="slider_9-1" i='9' j="1" class="slider">
+              <div id="custom-handle_9-1" i='9' j="1" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="2">
+          <div class="bar vertical-center">
+            <div id="slider_9-2" i='9' j="2" class="slider">
+              <div id="custom-handle_9-2" i='9' j="2" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--hidden cols-->
+        <div class="col-sm-1 col_dimension" j="3" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_9-3" i='9' j="3" class="slider">
+              <div id="custom-handle_9-3" i='9' j="3" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-sm-1 col_dimension" j="4" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_9-4" i='9' j="4" class="slider">
+              <div id="custom-handle_9-4" i='9' j="4" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="goal vertical-center">
+            <img src="img/ico-NEW.png" width="150"></img>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="description vertical-center">
+            <input type="text" value="Your custom goal 1" size="19" class="textbox" style="font-weight:bolder;"></input>
+              <textarea class="textbox" rows="3" cols="20">Please, describe your goal.</textarea>
+          </div>
+        </div>
+        <div class="col-sm-1 col_dimension" j="0">
+          <div class="bar vertical-center">
+            <div id="slider_10-0" i='10' j="0" class="slider">
+              <div id="custom-handle_10-0" i='10' j="0" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="1">
+          <div class="bar vertical-center">
+            <div id="slider_10-1" i='10' j="1" class="slider">
+              <div id="custom-handle_10-1" i='10' j="1" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="2">
+          <div class="bar vertical-center">
+            <div id="slider_10-2" i='10' j="2" class="slider">
+              <div id="custom-handle_10-2" i='10' j="2" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--hidden cols-->
+        <div class="col-sm-1 col_dimension" j="3" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_10-3" i='10' j="3" class="slider">
+              <div id="custom-handle_10-3" i='10' j="3" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-sm-1 col_dimension" j="4" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_10-4" i='10' j="4" class="slider">
+              <div id="custom-handle_10-4" i='10' j="4" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="goal vertical-center">
+            <img src="img/ico-NEW.png" width="150"></img>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="description vertical-center">
+            <input type="text" value="Your custom goal 2" size="19" class="textbox" style="font-weight:bolder;"></input>
+            <textarea class="textbox" rows="3" cols="20">Please, describe your goal.</textarea>
+          </div>
+        </div>
+        <div class="col-sm-1 col_dimension" j="0">
+          <div class="bar vertical-center">
+            <div id="slider_11-0" i='11' j="0" class="slider">
+              <div id="custom-handle_11-0" i='11' j="0" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="1">
+          <div class="bar vertical-center">
+            <div id="slider_11-1" i='11' j="1" class="slider">
+              <div id="custom-handle_11-1" i='11' j="1" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col_dimension" j="2">
+          <div class="bar vertical-center">
+            <div id="slider_11-2" i='11' j="2" class="slider">
+              <div id="custom-handle_11-2" i='11' j="2" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--hidden cols-->
+        <div class="col-sm-1 col_dimension" j="3" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_11-3" i='11' j="3" class="slider">
+              <div id="custom-handle_11-3" i='11' j="3" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-sm-1 col_dimension" j="4" style="display:none;">
+          <div class="bar vertical-center">
+            <div id="slider_11-4" i='11' j="4" class="slider">
+              <div id="custom-handle_11-4" i='11' j="4" class="ui-slider-handle handle">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+      </div>
+
+      <!--lower panel-->
+      
+      <div class="row">
+        
+        <div class="col-sm-12" >
+          <p><i>Adapted from : Stolk, Jonathan & Martello, Robert. (2018). Reimagining and Empowering the Design of Projects: A Project-Based Learning Goals Framework. 1-9. 10.1109/FIE.2018.8658981. </i></p> 
+        </div>
+        
+      </div>
+
+    </div>
+  </body>
+</html>

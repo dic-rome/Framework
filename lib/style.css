@@ -1,0 +1,62 @@
+/* Add your styles here */
+#custom-handle {
+    width: 3em;
+    height: 1.6em;
+    top: 50%;
+    margin-top: -.8em;
+    text-align: center;
+    line-height: 1.6em;
+}
+.slider
+{
+  background-color: #0094FF;
+}
+.handle
+{
+  width: 40px !important;
+}
+
+.container {
+  height: 200px;
+  position: relative;
+  border: 3px solid green;
+}
+
+.vertical-center {
+  margin: 0;
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+p
+{
+  font-size: smaller;
+}
+.textbox
+{
+  font-size: smaller;
+}
+.bar
+{
+  background: rgb(43,43,152);
+  background: linear-gradient(90deg, rgba(43,43,152,1) 0%, rgba(231,58,24,1) 51%);
+}
+.btn-primary
+{
+  font-size: smaller !important;
+}
+h1
+{
+  color:#009ADE;
+  text-shadow: 2px 2px 4px #BBBBBB;
+}
+.mainbox
+{
+  margin: 0 auto;
+  padding: 10px;
+  /*box-shadow: 2px 2px 4px #BBBBBB;*/
+  max-width: 80%;
+  
+}
